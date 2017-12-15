@@ -34,11 +34,6 @@ class LivrosController < ApplicationController
 		redirect_to dashboard_index_url
 	end
 
-	def lista_aluguel
-		livro = Livro.find(params[:id])
-		@alugueis = livro.alugueis
-	end
-
 	private
 
 	def verifica_admin

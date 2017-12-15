@@ -6,9 +6,9 @@ Rails.application.routes.draw do
 
 	resources :dashboard, only: [:index]
 	resources :livros, only: [:create, :new] do
+		resources :alugueis
 		get :aluga, on: :member
 		get :devolve, on: :member
-		get :lista_aluguel, on: :member
+		# get :lista_aluguel, on: :member
 	end
-	resources :alugueis, only: [:create]
 end

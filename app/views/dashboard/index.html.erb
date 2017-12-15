@@ -1,0 +1,50 @@
+	<%= flash_message %>
+
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Livro</th>
+				<th>Autor</th>
+				<th>Qtde Total</th>
+				<th>Qtde Disponível</th>
+				<th>
+					<% if current_user.admin? %>
+						<%= link_to "Cadastrar", new_livro_path, class: "btn btn-primary" %>
+					<% else %>
+					 	Ação
+					<% end %>		
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @livros.each do |livro| %>
+			<tr>
+				<td><%= livro.titulo %></td>
+				<td><%= livro.nome_autor %></td>
+				<td><%= livro.qtde_total %></td>
+				<td><%= livro.quantidade_disponivel %></td>
+				<td>
+					<div class="btn-group">
+						<% if livro.alugueis.exists?(user: current_user, alugado: true) %>
+							<%= link_to "Devolver", devolve_livro_path(livro), class: "btn btn-primary", data: {confirm: 'Gostaria de devolver esse livro?'} %>
+						<% else %>
+					  		<%= link_to "Alugar", aluga_livro_path(livro), class: "btn btn-primary", data: {confirm: 'Gostaria de alugar esse livro?', disable_with: "Alugando"} %>
+					  		<ul class="dropdown-menu">
+							    <li>
+							   	 <%= link_to "Devolver", devolve_livro_path(livro), data: {confirm: 'Gostaria de devolver esse livro?'} %>    
+							</ul>
+					  	<% end %>
+					  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					    <span class="caret"></span>
+					    <span class="sr-only">Toggle Dropdown</span>
+					  </button>
+					  <ul class="dropdown-menu">					 
+					    <li><%= link_to "Detalhes", lista_aluguel_livro_path(livro) %></li>
+					  </ul>
+					</div>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+

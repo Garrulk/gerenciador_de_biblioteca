@@ -1,0 +1,19 @@
+<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Usuário</th>
+				<th>Alugado em: </th>
+				<th>Entregue em: </th>				
+			</tr>
+		</thead>
+		<tbody>
+			<% @alugueis.each do |aluguel| %>
+			<tr>
+				<td><%= aluguel.user.username %></td>
+				<td><%= formata_data(aluguel.data) %></td>
+				<td><%= formata_data(aluguel.data_devolucao) %></td>
+				
+			</tr>
+			<% end %>
+		</tbody>
+	</table>

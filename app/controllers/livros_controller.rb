@@ -10,18 +10,7 @@ class LivrosController < ApplicationController
 		redirect_to dashboard_index_url
 	end
 
-	def aluga
-		livro = Livro.find(params[:id])
-		if livro.disponivel?
-			aluguel = Aluguel.create(livro: livro, user: current_user,
-				data: Date.current)
-		else
-			flash[:error] = "Quantidade indisponível no momento"
-
-		end
-		redirect_to dashboard_index_url
-	end
-
+	
 	def devolve
 		livro = Livro.find(params[:id])
 		aluguel = livro.alugueis.where(user: current_user, alugado: true).last

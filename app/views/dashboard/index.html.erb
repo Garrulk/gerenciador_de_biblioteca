@@ -9,7 +9,7 @@
 				<th>Qtde Disponível</th>
 				<th>
 					<% if current_user.admin? %>
-						<%= link_to "Cadastrar", new_livro_path, class: "btn btn-primary" %>
+						<%= link_to "Cadastrar", new_livro_path, class: "btn btn-primary" %>				
 					<% else %>
 					 	Ação
 					<% end %>		
@@ -28,18 +28,19 @@
 						<% if livro.alugueis.exists?(user: current_user, alugado: true) %>
 							<%= link_to "Devolver", devolve_livro_path(livro), class: "btn btn-primary", data: {confirm: 'Gostaria de devolver esse livro?'} %>
 						<% else %>
-					  		<%= link_to "Alugar", aluga_livro_path(livro), class: "btn btn-primary", data: {confirm: 'Gostaria de alugar esse livro?', disable_with: "Alugando"} %>
-					  		<ul class="dropdown-menu">
-							    <li>
-							   	 <%= link_to "Devolver", devolve_livro_path(livro), data: {confirm: 'Gostaria de devolver esse livro?'} %>    
-							</ul>
+					  		<%= link_to "Alugar", aluga_livro_path(livro), class: "btn btn-primary", data: {confirm: 'Gostaria de alugar esse livro?', disable_with: "Alugando"} %>				  		
 					  	<% end %>
 					  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					    <span class="caret"></span>
 					    <span class="sr-only">Toggle Dropdown</span>
 					  </button>
-					  <ul class="dropdown-menu">					 
+					  <ul class="dropdown-menu">
 					    <li><%= link_to "Detalhes", livro_alugueis_path(livro) %></li>
+
+					  <% if current_user.admin? %>
+					  <li><%= link_to "Editar", edit_livro_path(livro) %></li>	 
+					  <li><%= link_to "Remover", livro_path(livro), method: :delete, data: {confirm: 'Deseja realmente remover esse livro?'} %></li>
+					   <% end %>
 					  </ul>
 					</div>
 				</td>

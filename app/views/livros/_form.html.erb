@@ -1,0 +1,24 @@
+<%= flash_message %>
+
+
+<h2>Cadastro de livros</h2>
+
+<%= form_for @livro do |f| %>
+
+<div class="form-group">
+	<%= f.label :titulo %>
+	<%= f.text_field :titulo, class: "form-control" %> </br>
+</div>
+<div class="form-group">
+	<%= f.label :nome_autor %>
+	<%= f.text_field :nome_autor, class: "form-control" %></br>
+</div>
+<div class="form-group">
+	<%= f.label :qtde_total %>
+	<%= f.number_field :qtde_total, class: "form-control" %> </br>
+</div>
+
+</br>
+<%= f.submit "Cadastrar", class: "btn btn-primary" %>
+
+<% end %>

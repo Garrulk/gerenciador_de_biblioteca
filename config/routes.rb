@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 	root to: "pages#index"
 
 	resources :dashboard, only: [:index]
-	resources :livros, only: [:create, :new] do
+	resources :livros, only: [:create, :new, :destroy, :edit, :update] do
 		resources :alugueis
 		get :aluga, on: :member
 		get :devolve, on: :member

@@ -4,11 +4,9 @@ Rails.application.routes.draw do
 
 	root to: "pages#index"
 
+	resources :users, only: [:index]
 	resources :dashboard, only: [:index]
 	resources :livros, only: [:create, :new, :destroy, :edit, :update] do
-		resources :alugueis
-		get :aluga, on: :member
-		get :devolve, on: :member
-		# get :lista_aluguel, on: :member
+		resource :alugueis	
 	end
 end

@@ -14,4 +14,8 @@ class Livro < ActiveRecord::Base
 		quantidade_disponivel > 0
 	end
 
+	def alugado_por?(user)
+		alugueis.exists?(user: user, alugado: true)		
+	end
+
 end

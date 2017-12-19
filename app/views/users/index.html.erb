@@ -1,0 +1,18 @@
+<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Usuário</th>
+				<th>Email </th>
+				<th>Cadastrado em: </th>				
+			</tr>
+		</thead>
+		<tbody>
+			<% @users.each do |user| %>
+			<tr>
+				<td><%= user.username %></td>
+				<td><%= user.email %></td>
+				<td><%= formata_data(user.created_at) %></td>				
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
